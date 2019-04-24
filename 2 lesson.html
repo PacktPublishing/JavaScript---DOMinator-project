@@ -1,0 +1,22 @@
+<html><head><style></style></head>
+<body>
+<div>Hello World</div>
+<input type="text" name="firstName" value="Laurence">
+<button class="btn">Submit</button>
+
+<script>
+
+const selElement = document.querySelector("div");
+const seInput = document.querySelector("input[name=firstName]");
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click",function(event){
+    console.log(event.target);
+    console.log(this);
+    console.log(btn);
+})
+
+
+    </script>
+</body>
+</html>

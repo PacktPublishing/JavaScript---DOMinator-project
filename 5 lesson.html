@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <style>
+        .bigger {
+            font-size: 3em;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Hello World</div>
+    <input type="text" name="outputText" value="Laurence">
+    <br> Background :
+    <input type="color" name="bg" value="#ffffff">
+    <br> Text Color:
+    <input type="color" name="txt" value="#000000">
+    <br>
+    <button class="btn">Update</button>
+    <script>
+        const selElement = document.querySelector("div");
+        const seInput = document.querySelector("input[name=outputText]");
+        const seBg = document.querySelector("input[name=bg]");
+        const seTxt = document.querySelector("input[name=txt]");
+        const btn = document.querySelector(".btn");
+        btn.addEventListener("click", function (event) {
+            selElement.textContent = seInput.value;
+            selElement.style.backgroundColor = seBg.value;
+            selElement.style.color = seTxt.value;
+            selElement.classList.toggle("bigger");
+            console.log(seBg.value);
+            console.log(seTxt.value);
+        })
+    </script>
+</body>
+
+</html>

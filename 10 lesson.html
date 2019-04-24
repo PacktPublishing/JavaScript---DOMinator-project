@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <style>
+        .bigger {
+            font-size: 3em;
+            font-family: cursive;
+        }
+        
+        .padded {
+            padding: 20px;
+        }
+        
+        .borderAdd {
+            border: 3px dotted blue;
+        }
+    </style>
+</head>
+
+<body> Add Element:
+    <select name="addElement"></select>
+    <button name="adder">Add</button>
+    <br> Select Element
+    <select name="eleMaker"></select>
+    <br> Inner Text :
+    <input type="text" name="outputText" value="Laurence">
+    <br> Background :
+    <input type="color" name="bg" value="#ffffff">
+    <br> Text Color:
+    <input type="color" name="txt" value="#000000">
+    <br> Toggle Classes
+    <select name="classes"></select>
+    <br>
+    <button class="btn">Update</button>
+    <div id="main">
+        <div>Hello World</div>
+        <p>Laurence</p> <span>JavaScript</span> </div>
+    <script>
+        const classArray = ["padded", "bigger", "borderAdd"];
+        const elementArray = ["div", "p", "span"];
+        const selClasses = document.querySelector("select[name=classes]");
+        const eleMaker = document.querySelector("select[name=eleMaker]");
+        const addElement = document.querySelector("select[name=addElement]");
+        const adder = document.querySelector("button[name=adder]");
+        const selElement = document.querySelector("div");
+        const seInput = document.querySelector("input[name=outputText]");
+        const seBg = document.querySelector("input[name=bg]");
+        const seTxt = document.querySelector("input[name=txt]");
+        const btn = document.querySelector(".btn");
+        const main = document.querySelector("#main");
+        let nodeLister;
+        adder.addEventListener("click", function () {
+            console.log(addElement.value);
+            let temp = document.createElement(addElement.value);
+            temp.textContent = addElement.value;
+            main.appendChild(temp);
+            dropDownBuilder();
+        })
+        btn.addEventListener("click", function (event) {
+            let tempElement = nodeLister[eleMaker.value];
+            tempElement.textContent = seInput.value;
+            tempElement.style.backgroundColor = seBg.value;
+            tempElement.style.color = seTxt.value;
+            tempElement.classList.toggle(selClasses.value);
+        })
+        document.addEventListener("DOMContentLoaded", function () {
+            classArray.forEach(function (item) {
+                let opt = document.createElement("option");
+                opt.value = item;
+                opt.innerHTML = item;
+                selClasses.appendChild(opt);
+            })
+            elementArray.forEach(function (item) {
+                    let opt = document.createElement("option");
+                    opt.value = item;
+                    opt.innerHTML = item;
+                    addElement.appendChild(opt);
+                })
+                //addElement 
+            nodeLister = document.querySelectorAll("#main >*");
+            dropDownBuilder();
+        })
+
+        function dropDownBuilder() {
+            eleMaker.innerHTML = "";
+            nodeLister = document.querySelectorAll("#main >*");
+            nodeLister.forEach(function (item, index) {
+                let opt = document.createElement("option");
+                opt.value = index;
+                opt.innerHTML = item.tagName;
+                eleMaker.appendChild(opt);
+            })
+        }
+    </script>
+</body>
+
+</html>

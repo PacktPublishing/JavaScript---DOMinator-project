@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <style>
+        .bigger {
+            font-size: 3em;
+            font-family: cursive;
+        }
+        
+        .padded {
+            padding: 20px;
+        }
+        
+        .borderAdd {
+            border: 3px dotted blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div>Hello World</div>
+        <p>Laurence</p> <span>JavaScript</span> </div>
+    <input type="text" name="outputText" value="Laurence">
+    <br> Background :
+    <input type="color" name="bg" value="#ffffff">
+    <br> Text Color:
+    <input type="color" name="txt" value="#000000">
+    <br> Toggle Classes
+    <select name="classes"></select>
+    <br>
+    <button class="btn">Update</button>
+    <script>
+        const classArray = ["padded", "bigger", "borderAdd"];
+        const selClasses = document.querySelector("select[name=classes]");
+        const selElement = document.querySelector("div");
+        const seInput = document.querySelector("input[name=outputText]");
+        const seBg = document.querySelector("input[name=bg]");
+        const seTxt = document.querySelector("input[name=txt]");
+        const btn = document.querySelector(".btn");
+        let nodeLister;
+        btn.addEventListener("click", function (event) {
+            selElement.textContent = seInput.value;
+            selElement.style.backgroundColor = seBg.value;
+            selElement.style.color = seTxt.value;
+            selElement.classList.toggle(selClasses.value);
+        })
+        document.addEventListener("DOMContentLoaded", function () {
+            classArray.forEach(function (item) {
+                let opt = document.createElement("option");
+                opt.value = item;
+                opt.innerHTML = item;
+                selClasses.appendChild(opt);
+            })
+            nodeLister = document.querySelectorAll("#main >*");
+            nodeLister.forEach(function (item) {
+                console.log(item);
+            })
+        })
+    </script>
+</body>
+
+</html>
